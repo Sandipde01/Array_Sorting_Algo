@@ -1,0 +1,78 @@
+
+import java.util.*;
+
+public class jjj {
+
+    public static void merge(int arr[], int l, int mid, int r) {
+        ArrayList<Integer> sort = new ArrayList<>();
+        int i = l;
+        int j = mid + 1;
+  
+        int index = 0;
+        
+        while (i<=mid && j<=r) {
+          
+            if (arr[i] <= arr[j]) {
+               sort.add(arr[i]);
+                i++;
+            } else {
+                sort.add(arr[j]);
+                j++;
+            }
+
+            index++;
+        }
+
+        while (i <= mid) {
+            
+            
+            sort.add(arr[i]);
+           
+            i++;
+
+            
+            index++;
+            
+
+        }
+
+        while (j <=r) {
+            sort.add(arr[j]);
+            j++;
+
+            index++;
+        }
+
+        index =0;
+        for(int I=l;I<=r;I++){
+          arr[I] =  sort.get(index);
+          index++;
+        }
+    }
+
+   
+
+    public static void mergeSort(int arr[], int l, int r) {
+      
+        if (l >= r) {
+         
+            return;
+        }
+        count++;
+        int mid = (l + r) / 2;
+       
+        mergeSort(arr, l, mid);
+        mergeSort(arr, mid + 1, r);
+        merge(arr, l, mid, r);
+    }
+
+    public static void main(String[] args) {
+        int[] hist = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
+        mergeSort(hist, 0, hist.length - 1);
+        for (int v : hist) {
+            System.out.print(v + " ");
+        }
+        System.out.println();
+
+    }
+}
